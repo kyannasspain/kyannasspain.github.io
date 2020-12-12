@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on My Website</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on My Website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 11 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dental Public Health and Python</title>
+      <link>/post/2020/12/11/dental-public-health-python/</link>
+      <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020/12/11/dental-public-health-python/</guid>
+      <description>As a biology nerd also interested in sociology, I joined the UT Austin Bridging Disciplines Social Inequality, Health, and Policy certificate program.
+This allowed me to take my natural science courses but also learn about social science and the economic, societal, and educational disparities that exist in United States populations and across the world.
+In my computational biology course, I learned not only how to code using the R language, but I was able to use my learned skills to analyze, model, test, and predict various population statistics and the role carbon dioxide emissions plays in them.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Kyanna Spain" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
+    <title>Project 2: Modeling, Testing, and Predicting</title>
+    <meta name="generator" content="Hugo 0.79.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../../"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="../../post/">BLOG</a></li>
+        
+        <li><a href="../../projects/">PROJECTS</a></li>
+        
+        <li><a href="../../resume/">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="../../project/project2/">Project 2: Modeling, Testing, and Predicting</a></strong>
+          </h3>
+        </div>
+ 
+<div class="blog-title">
+          <h4>
+         January 1, 0001 
+            &nbsp;&nbsp;
+            
+          </h4>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              
+
+
+<div id="modeling-testing-and-predicting-the-effect-of-carbon-dioxide-emissions-on-population-statistics-across-world-regions" class="section level1">
+<h1>Modeling, Testing, and Predicting the Effect of Carbon Dioxide Emissions On Population Statistics Across World Regions</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>For modeling, testing, and predicting project, I chose the dataset I previously created from two datasets from the World Bank Indicators portal. The 'nations' dataset contains population statistics across several years for various countries using their three letter country codes. The variables include: 'iso2c', the two letter code for each country; 'iso3c', the three letter code for each country; 'country', the country name; 'year'; 'gdp_percap', the gross domestic product per capita in current international dollars corrected for purchasing power in different territories; 'life_expect', the life expectancy at birth in years; 'population', the estimated total population at mid-year including all residents except refugees; 'birth_rate', the number of live births per 1,000 people based on the 'population' estimate; 'neonat_mortal_rate', the number of babies dying before 28 days old per 1,000 live births that year; 'region', world boundaries set for administrative purposes by the World Bank; and 'income', four income groupings: low, lower-middle, upper-middle, and high. The gross national income per capita is 1,035 dollars or less, between 1,036 and 4,045 dollars, between 4,046 and 12,535 dollars, or 12,536 dollars or more for low, lower-middle, upper-middle, and high income, respectively. Lastly, 'co2_percap' is the carbon dioxide emissions in metric tons per capita, where a metric ton is equal to 1,000 kilograms. There are 4211 observations and 13 columns.</p>
+<pre class="r"><code>nations &lt;- read.csv(&quot;nations.csv&quot;)</code></pre>
+</div>
+<div id="manova" class="section level2">
+<h2>MANOVA</h2>
+<p>I performed a one-way MANOVA to determine the effect of the world Region (East Asia &amp; Pacific, South Asia, Europe &amp; Central Asia, Sub-Saharan Africa, Latin America &amp; Caribbean, North America, and Middle East &amp; North Africa) on six dependent variables (GDP Per Capita, Life Expectancy, Population, Birth Rate, Neonatal Mortality Rate, and CO2 Per Capita).</p>
+<div id="assumptions" class="section level3">
+<h3>Assumptions</h3>
+<p>There are many assumptions for a MANOVA, including random samples, independent observations, multivariate normality of the dependent variables, homogeneity of within-group covariance matrices, linear relationships among the dependent variables, no extreme univariate or multivariate outliers, and no multicollinearity. Meeting all of these assumptions is unlikely, making MANOVA testing very restrictive. In performing the Box M's test for homogeneity of covariance matrices, I recieved a p-value of 0 meaning I can reject the null hypothesis that states that the homogeneity of variance covariance matrices assumption is met. This assumption has been violated. In performing the Shapiro-Wilk test for multivariate normality, I receieved a p value of 2.821286e-67 meaning I can reject the null hypothesis that states that the assumption of multivariate normality is met and conclude that my data failed to meet this MANOVA assumption.</p>
+</div>
+<div id="hypotheses" class="section level3">
+<h3>Hypotheses</h3>
+<p>The null hypothesis for this MANOVA states for gross domestic product per capita, life exptectancy, population, birth rate, neonatal morality rate, and co2 per capita, the means for each region are equal. Significant differences were found among the six world regions for at least one of the dependent variables (Pillai trace = 1.3315, pseudo F(36, 25224) = 199.84, p &lt; 2.2e-16). I can reject the null hypothesis and conclude that for at least one response variable shows a mean difference across regions.</p>
+</div>
+<div id="univariate-anovas" class="section level3">
+<h3>Univariate ANOVAs</h3>
+<p>Univariate ANOVAs for each dependent variable were conducted as follow-up tests to the MANOVA. Using the Bonferroni method for controlling Type I error rates for multiple comparisons, I found that every response variable differs by region. gdp_percap by region has a p value of 2.2e-16, life_expect by region has a p value of 2.2e-16, population by region has a p value of 2.2e-16, birth_rate by region has a p value of 2.2e-16, neonat_mortal_rate by region has a p value of 2.2e-16, and co2_percap by region has a p value of 2.2e-16.</p>
+</div>
+<div id="post-hoc-tests" class="section level3">
+<h3>Post Hoc Tests</h3>
+<p>Post hoc analysis was performed conducting pairwise comparisons to determine which regions differed in GDP per capita, life expectancy, population, birth Rate, neonatal mortality rate, and CO2 per capita. All seven regions were found to differ significantly from each other in terms of gross domestic product per capita, life exptectancy, population, birth rate, neonatal morality rate, and co2 per capita except for regions 'East Asia &amp; Pacific' and 'Latin America &amp; Caribbean' which do not differ in CO2 emissions per capita, neonatal mortality rate, or birth rate, 'South Asia' and 'Sub-Saharan Africa' which do not differ in CO2 emissions per capita, neonatal mortality rate, or GDP per capita, 'Latin America &amp; Caribbean' and 'Middle East &amp; North Africa' which do not differ in neonatal mortality rate or life expectancy, 'Europe &amp; Central Asia' and 'North America' which do not differ in neonatal mortality rate or birth rate, 'East Asia &amp; Pacific' and 'Middle East &amp; North Africa' which do not differ in neonatal mortality rate or birth rate, 'Europe &amp; Central Asia' and 'Latin America &amp; Caribbean' which do not differ in population, 'Europe &amp; Central Asia' and 'Middle East &amp; North Africa' which do not differ in population, 'Europe &amp; Central Asia' and 'Sub-Saharan Africa' which do not differ in population, 'Latin America &amp; Caribbean' and 'Middle East &amp; North Africa' which do not differ in population, 'Latin America &amp; Caribbean' and 'Sub-Saharan Africa' which do not differ in population, 'Middle East &amp; North Africa' and 'Sub-Saharan Africa' which do not differ in population, and 'North America' and 'South Asia' which do not differ in population after adjusting for multiple comparisons.</p>
+</div>
+<div id="bonferroni" class="section level3">
+<h3>Bonferroni</h3>
+<p>Overall, I ran 133 hypothesis tests. Across this whole set of tests, the probability that I have made at least one type I error is 99.9%. Using the Bonferroni method for controlling Type I error rates for multiple comparisons, my adjusted significance level is 0.0003759.</p>
+<pre class="r"><code>library(rstatix)
+group &lt;- nations$region 
+DVs &lt;- nations %&gt;% select(gdp_percap, life_expect, population, birth_rate, neonat_mortal_rate, co2_percap)
+mshapiro_test(DVs)</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##   statistic  p.value
+##       &lt;dbl&gt;    &lt;dbl&gt;
+## 1     0.676 2.82e-67</code></pre>
+<pre class="r"><code>box_m(DVs, group)</code></pre>
+<pre><code>## # A tibble: 1 x 4
+## statistic p.value parameter method
+## &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+## 1 20832.  0 126 Box&#39;s M-test for Homogeneity of
+Covariance Matrices</code></pre>
+<pre class="r"><code>man&lt;-manova(cbind(gdp_percap, life_expect, population, birth_rate, neonat_mortal_rate, co2_percap)~region, data=nations)
+summary(man)</code></pre>
+<pre><code>## Df Pillai approx F num Df den Df Pr(&gt;F)
+## region 6 1.3315 199.84 36 25224 &lt; 2.2e-16 ***
+## Residuals 4204
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1
+&#39; &#39; 1</code></pre>
+<pre class="r"><code>summary.aov(man)</code></pre>
+<pre><code>## Response gdp_percap :
+## Df Sum Sq Mean Sq F value Pr(&gt;F)
+## region 6 2.4812e+11 4.1353e+10 214.66 &lt; 2.2e-16 ***
+## Residuals 4204 8.0988e+11 1.9265e+08
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1
+&#39; &#39; 1
+##
+## Response life_expect :
+## Df Sum Sq Mean Sq F value Pr(&gt;F)
+## region 6 258606 43101 1302.5 &lt; 2.2e-16 ***
+## Residuals 4204 139114 33
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1
+&#39; &#39; 1
+##
+## Response population :
+## Df Sum Sq Mean Sq F value Pr(&gt;F)
+## region 6 8.0554e+18 1.3426e+18 85.935 &lt; 2.2e-16 ***
+## Residuals 4204 6.5679e+19 1.5623e+16
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1
+&#39; &#39; 1
+##
+## Response birth_rate :
+## Df Sum Sq Mean Sq F value Pr(&gt;F)
+## region 6 388828 64805 1381.5 &lt; 2.2e-16 ***
+## Residuals 4204 197202 47
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1
+&#39; &#39; 1
+##
+## Response neonat_mortal_rate :
+## Df Sum Sq Mean Sq F value Pr(&gt;F)
+## region 6 517479 86247 828.16 &lt; 2.2e-16 ***
+## Residuals 4204 437815 104
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1
+&#39; &#39; 1
+##
+## Response co2_percap :
+## Df Sum Sq Mean Sq F value Pr(&gt;F)
+## region 6 45032 7505.3 268.38 &lt; 2.2e-16 ***
+## Residuals 4204 117564 28.0
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1
+&#39; &#39; 1</code></pre>
+<pre class="r"><code>nations%&gt;%group_by(region)%&gt;%summarize(mean(gdp_percap),mean(life_expect), mean(population), mean(birth_rate), mean(neonat_mortal_rate), mean(co2_percap))</code></pre>
+<pre><code>## # A tibble: 7 x 7
+## region `mean(gdp_perca… `mean(life_expe…
+`mean(populatio… `mean(birth_rat… `mean(neonat_mo…
+## &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 East … 12359.  69.9 82228644.  23.3 15.7
+## 2 Europ… 19447.  74.5 18791573.  13.1 8.00
+## 3 Latin… 9077.  71.2 17345717.  22.5 14.9
+## 4 Middl… 23349.  71.6 16789422.  24.4 15.9
+## 5 North… 35268.  78.3 158926616.  13.0 4.26
+## 6 South… 3561.  65.3 201327926.  27.3 35.5
+## 7 Sub-S… 3189.  54.5 16632555.  39.4 35.9
+## # … with 1 more variable: `mean(co2_percap)` &lt;dbl&gt;</code></pre>
+<pre class="r"><code>pairwise.t.test(nations$gdp_percap,nations$region, p.adj=&quot;none&quot;)</code></pre>
+<pre><code>##
+## Pairwise comparisons using t tests with pooled SD
+##
+## data: nations$gdp_percap and nations$region
+##
+## East Asia &amp; Pacific Europe &amp; Central Asia Latin America
+&amp; Caribbean
+## Europe &amp; Central Asia &lt; 2e-16 - -
+## Latin America &amp; Caribbean 1.4e-05 &lt; 2e-16 -
+## Middle East &amp; North Africa &lt; 2e-16 3.8e-07 &lt; 2e-16
+## North America &lt; 2e-16 4.0e-15 &lt; 2e-16
+## South Asia 1.3e-13 &lt; 2e-16 2.0e-06
+## Sub-Saharan Africa &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## Middle East &amp; North Africa North America South Asia
+## Europe &amp; Central Asia - - -
+## Latin America &amp; Caribbean - - -
+## Middle East &amp; North Africa - - -
+## North America 8.5e-09 - -
+## South Asia &lt; 2e-16 &lt; 2e-16 -
+## Sub-Saharan Africa &lt; 2e-16 &lt; 2e-16 0.74
+##
+## P value adjustment method: none</code></pre>
+<pre class="r"><code>pairwise.t.test(nations$life_expect,nations$region, p.adj=&quot;none&quot;)</code></pre>
+<pre><code>##
+## Pairwise comparisons using t tests with pooled SD
+##
+## data: nations$life_expect and nations$region
+##
+## East Asia &amp; Pacific Europe &amp; Central Asia Latin America
+&amp; Caribbean
+## Europe &amp; Central Asia &lt; 2e-16 - -
+## Latin America &amp; Caribbean 2.7e-05 &lt; 2e-16 -
+## Middle East &amp; North Africa 1.8e-06 &lt; 2e-16 0.27
+## North America &lt; 2e-16 4.1e-06 &lt; 2e-16
+## South Asia &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## Sub-Saharan Africa &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## Middle East &amp; North Africa North America South Asia
+## Europe &amp; Central Asia - - -
+## Latin America &amp; Caribbean - - -
+## Middle East &amp; North Africa - - -
+## North America 5.0e-15 - -
+## South Asia &lt; 2e-16 &lt; 2e-16 -
+## Sub-Saharan Africa &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+##
+## P value adjustment method: none</code></pre>
+<pre class="r"><code>pairwise.t.test(nations$population,nations$region, p.adj=&quot;none&quot;)</code></pre>
+<pre><code>##
+## Pairwise comparisons using t tests with pooled SD
+##
+## data: nations$population and nations$region
+##
+## East Asia &amp; Pacific Europe &amp; Central Asia Latin America
+&amp; Caribbean
+## Europe &amp; Central Asia &lt; 2e-16 - -
+## Latin America &amp; Caribbean &lt; 2e-16 0.807 -
+## Middle East &amp; North Africa &lt; 2e-16 0.772 0.940
+## North America 3.1e-05 1.1e-14 1.1e-14
+## South Asia &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## Sub-Saharan Africa &lt; 2e-16 0.688 0.905
+## Middle East &amp; North Africa North America South Asia
+## Europe &amp; Central Asia - - -
+## Latin America &amp; Caribbean - - -
+## Middle East &amp; North Africa - - -
+## North America 2.7e-14 - -
+## South Asia &lt; 2e-16 0.034 -
+## Sub-Saharan Africa 0.982 4.7e-15 &lt; 2e-16
+##
+## P value adjustment method: none</code></pre>
+<pre class="r"><code>pairwise.t.test(nations$birth_rate,nations$region, p.adj=&quot;none&quot;)</code></pre>
+<pre><code>##
+## Pairwise comparisons using t tests with pooled SD
+##
+## data: nations$birth_rate and nations$region
+##
+## East Asia &amp; Pacific Europe &amp; Central Asia Latin America
+&amp; Caribbean
+## Europe &amp; Central Asia &lt; 2e-16 - -
+## Latin America &amp; Caribbean 0.0409 &lt; 2e-16 -
+## Middle East &amp; North Africa 0.0098 &lt; 2e-16 4.8e-06
+## North America &lt; 2e-16 0.8680 &lt; 2e-16
+## South Asia 9.2e-12 &lt; 2e-16 &lt; 2e-16
+## Sub-Saharan Africa &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## Middle East &amp; North Africa North America South Asia
+## Europe &amp; Central Asia - - -
+## Latin America &amp; Caribbean - - -
+## Middle East &amp; North Africa - - -
+## North America &lt; 2e-16 - -
+## South Asia 1.6e-06 &lt; 2e-16 -
+## Sub-Saharan Africa &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+##
+## P value adjustment method: none</code></pre>
+<pre class="r"><code>pairwise.t.test(nations$neonat_mortal_rate,nations$region, p.adj=&quot;none&quot;)</code></pre>
+<pre><code>##
+## Pairwise comparisons using t tests with pooled SD
+##
+## data: nations$neonat_mortal_rate and nations$region
+##
+## East Asia &amp; Pacific Europe &amp; Central Asia Latin America
+&amp; Caribbean
+## Europe &amp; Central Asia &lt; 2e-16 - -
+## Latin America &amp; Caribbean 0.150 &lt; 2e-16 -
+## Middle East &amp; North Africa 0.708 &lt; 2e-16 0.086
+## North America 3.1e-14 0.011 1.1e-12
+## South Asia &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## Sub-Saharan Africa &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## Middle East &amp; North Africa North America South Asia
+## Europe &amp; Central Asia - - -
+## Latin America &amp; Caribbean - - -
+## Middle East &amp; North Africa - - -
+## North America 1.9e-14 - -
+## South Asia &lt; 2e-16 &lt; 2e-16 -
+## Sub-Saharan Africa &lt; 2e-16 &lt; 2e-16 0.566
+##
+## P value adjustment method: none</code></pre>
+<pre class="r"><code>pairwise.t.test(nations$co2_percap,nations$region, p.adj=&quot;none&quot;)</code></pre>
+<pre><code>##
+## Pairwise comparisons using t tests with pooled SD
+##
+## data: nations$co2_percap and nations$region
+##
+## East Asia &amp; Pacific Europe &amp; Central Asia Latin America
+&amp; Caribbean
+## Europe &amp; Central Asia &lt; 2e-16 - -
+## Latin America &amp; Caribbean 0.00027 &lt; 2e-16 -
+## Middle East &amp; North Africa &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## North America &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## South Asia 1.6e-14 &lt; 2e-16 4.1e-08
+## Sub-Saharan Africa &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## Middle East &amp; North Africa North America South Asia
+## Europe &amp; Central Asia - - -
+## Latin America &amp; Caribbean - - -
+## Middle East &amp; North Africa - - -
+## North America &lt; 2e-16 - -
+## South Asia &lt; 2e-16 &lt; 2e-16 -
+## Sub-Saharan Africa &lt; 2e-16 &lt; 2e-16 0.73407
+##
+## P value adjustment method: none</code></pre>
+<pre class="r"><code>1-(0.95)^133</code></pre>
+<pre><code>## [1] 0.9989105</code></pre>
+<pre class="r"><code>.05/133</code></pre>
+<pre><code>## [1] 0.0003759398</code></pre>
+</div>
+</div>
+<div id="randomization-test-permanova" class="section level2">
+<h2>Randomization Test PERMANOVA</h2>
+<p>Due to the numerous MANOVA assumptions and the small likelihood of meeting them all, I ran a PERMONVA as my randomization test.</p>
+<div id="hypotheses-1" class="section level3">
+<h3>Hypotheses</h3>
+<p>The null hypothesis here is that the centroids and dispersion of my groups(East Asia &amp; Pacific, South Asia, Europe &amp; Central Asia, Sub-Saharan Africa, Latin America &amp; Caribbean, North America, and Middle East &amp; North Africa) are equivalent for all groups. My alternative hypothesis is that the centroids and dispersion are not equal for all groups.</p>
+</div>
+<div id="results" class="section level3">
+<h3>Results</h3>
+<p>None of my 1000 F statistics generated under the null hypothesis were bigger than my actual F statistic, so I can reject the null hypothesis and conclude that the groups differ just like in the MANOVA (p=0).</p>
+<pre class="r"><code>dists&lt;-nations%&gt;%select(gdp_percap, life_expect, population, birth_rate, neonat_mortal_rate, co2_percap)%&gt;%dist()
+
+nations%&gt;%count(region)</code></pre>
+<pre><code>##                       region    n
+## 1        East Asia &amp; Pacific  612
+## 2      Europe &amp; Central Asia 1105
+## 3  Latin America &amp; Caribbean  750
+## 4 Middle East &amp; North Africa  465
+## 5              North America   50
+## 6                 South Asia  177
+## 7         Sub-Saharan Africa 1052</code></pre>
+<pre class="r"><code>nations&lt;-nations%&gt;%arrange(region)
+SST&lt;- sum(dists^2)/4211
+SSW&lt;-nations%&gt;%group_by(region)%&gt;%select(region, gdp_percap, life_expect, population, birth_rate, neonat_mortal_rate, co2_percap)%&gt;%
+do(d=dist(.[2:7],&quot;euclidean&quot;))%&gt;%ungroup()%&gt;%
+summarize(sum(d[[1]]^2)/612 + sum(d[[2]]^2)/1105+ sum(d[[3]]^2)/750+ sum(d[[4]]^2)/465+ sum(d[[5]]^2)/50+ sum(d[[6]]^2)/177+ sum(d[[7]]^2)/1052)%&gt;%pull
+F_obs&lt;-((SST-SSW)/6)/(SSW/4205)
+
+
+Fs&lt;-replicate(1000,{
+new&lt;-nations%&gt;%mutate(region=sample(region))
+SSW&lt;-new%&gt;%group_by(region)%&gt;%select(region, gdp_percap, life_expect, population, birth_rate, neonat_mortal_rate, co2_percap)%&gt;%
+do(d=dist(.[2:7],&quot;euclidean&quot;))%&gt;%ungroup()%&gt;%
+summarize(sum(d[[1]]^2)/612 + sum(d[[2]]^2)/1105+ sum(d[[3]]^2)/750+ sum(d[[4]]^2)/465+ sum(d[[5]]^2)/50+ sum(d[[6]]^2)/177+ sum(d[[7]]^2)/1052)%&gt;%pull
+
+((SST-SSW)/6)/(SSW/4205)
+})
+
+{hist(Fs,prob = T); abline(v=F_obs, col=&quot;red&quot;, add=T)}</code></pre>
+<p><img src="../../project/project2_files/figure-html/unnamed-chunk-3-1.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>mean(Fs&gt;F_obs)</code></pre>
+<pre><code>## [1] 0</code></pre>
+</div>
+</div>
+<div id="linear-regression" class="section level2">
+<h2>Linear Regression</h2>
+<p>To predict neonatal mortality rate from income and birth rate I built a linear regression model, including the interaction of income and birth rate, and mean-centered my numeric variable, birth rate.</p>
+<div id="coefficient-estimates-interpretation" class="section level3">
+<h3>Coefficient Estimates Interpretation</h3>
+<p>The intercept tells me that the mean/predicted neonatal mortality rate for high income countries with average birth rates is 14.12 deaths per 1000 live births. 'incomeLow income' reveals that for low income countries with average birth rates, the predicted neonatal mortality rate is 12.83 deaths more than high income countries with average birth rates. 'incomeLower middle income' reveals that for lower middle income countries with average birth rates, the predicted neonatal mortality rate is 7.25 deaths more than high income countries with average birth rates. 'incomeNot classified' reveals that for countries that do not have an income classification but have average birth rates, the predicted neonatal mortality rate is 3.1 deaths less than high income countries with average birth rates. Lastly, 'incomeUpper middle income'reveals that for upper middle income countries with average birth rates, the predicted neonatal mortality rate is 3.08 deaths more than high income countries with average birth rates.</p>
+<p>'birthrate_c' reveals that for every 1 birth increase in birth rate, predicted neonatal mortality rate goes up 0.827 deaths in high income countries. 'incomeLow income:birthrate_c' tells me that the slope of birth rate on neonatal mortality rate for low income countries is 0.11 lesser than for high income countries. 'incomeLower middle income:birthrate_c' tells me that the slope of birth rate on neonatal mortality rate for lower middle income countries is 0.029 greater than for high income countries. 'incomeNot classified:birthrate_c' tells me that the slope of birth rate on neonatal mortality rate for countries that do not have an income classification is 1.55 greater than for high income countries. Lastly, 'incomeUpper middle income:birthrate_c' tells me that the slope of birth rate on neonatal mortality rate for upper middle income countries is 0.11 lesser than for high income countries.</p>
+</div>
+<div id="checking-assumptions" class="section level3">
+<h3>Checking Assumptions</h3>
+<p>In plotting the residuals against the fitted values of my regression to check for linearality and homoskedasticity, it appears that my model fails both the linearity and homoskedasticity assumption since the pattern appears non-random and there is a fanning out of the points as they go up the x-axis. Using a QQ plot, my model does meet the normality assumption as well, appearing slightly right-skewed.</p>
+</div>
+<div id="robust-standard-errors" class="section level3">
+<h3>Robust Standard Errors</h3>
+<p>Before running my regression using robust standard errors, all of my coefficient estimates were significant. After re-running the regression using the robust standards errors, my standard errors for all coefficients increased, my t-statistic for all coefficients decreased, and p-values for all coefficients increased under the uncorrected standard errors except for 'incomeNot classified:birthrate_c' and 'incomeNot classified'. With the increase in my p-value after using robust standard errors, the coefficients 'incomeNot classified', 'incomeLow income:birthrate_c', 'incomeLower middle income:birthrate_c', and 'incomeUpper middle income:birthrate_c' are no longer significant. I.e. for countries that do not have an income classification but have average birth rates, the predicted neonatal mortality rate is 3.1 deaths less than high income countries with average birth rates (not significant, p=0.08732). The slope of birth rate on neonatal mortality rate for low income countries is 0.11 lesser than for high income countries (not significant, p=0.11294). The slope of birth rate on neonatal mortality rate for lower middle income countries is 0.029 greater than for high income countries (not significant, p=0.64857).The slope of birth rate on neonatal mortality rate for upper middle income countries is 0.11 lesser than for high income countries (not significant, p=0.07468).</p>
+</div>
+<div id="adjusted-r-squared" class="section level3">
+<h3>Adjusted R Squared</h3>
+<p>The proportion of the variation in the outcome my model explains is 0.7459.</p>
+<pre class="r"><code>library(lmtest)
+library(sandwich)
+nations$birthrate_c &lt;- nations$birth_rate - mean(nations$birth_rate, na.rm=T)
+fit&lt;-lm(neonat_mortal_rate ~ income*birthrate_c, data=nations)
+summary(fit)</code></pre>
+<pre><code>##
+## Call:
+## lm(formula = neonat_mortal_rate ~ income * birthrate_c,
+data = nations)
+##
+## Residuals:
+## Min 1Q Median 3Q Max
+## -19.991 -4.493 -0.512 3.397 34.385
+##
+## Coefficients:
+## Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) 14.12089 0.45513 31.026 &lt; 2e-16 ***
+## incomeLow income 12.82975 0.73476 17.461 &lt; 2e-16 ***
+## incomeLower middle income 7.25436 0.52198 13.898 &lt; 2e-16
+***
+## incomeNot classified -3.10180 166.83373 -0.019 0.9852
+## incomeUpper middle income 3.07764 0.55032 5.592 2.38e-08
+***
+## birthrate_c 0.82727 0.03739 22.123 &lt; 2e-16 ***
+## incomeLow income:birthrate_c -0.10939 0.05104 -2.143
+0.0321 *
+## incomeLower middle income:birthrate_c 0.02867 0.04487
+0.639 0.5230
+## incomeNot classified:birthrate_c 1.54813 13.42266 0.115
+0.9082
+## incomeUpper middle income:birthrate_c -0.10978 0.05278
+-2.080 0.0376 *
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1
+&#39; &#39; 1
+##
+## Residual standard error: 7.593 on 4201 degrees of
+freedom
+## Multiple R-squared: 0.7465, Adjusted R-squared: 0.7459
+## F-statistic: 1374 on 9 and 4201 DF, p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>ggplot(nations, aes(birthrate_c, neonat_mortal_rate, color=income)) + geom_point()+geom_vline(xintercept=mean(nations$birth_rate,na.rm=T))+geom_smooth(method=&quot;lm&quot;)+xlim(0,1.4)</code></pre>
+<p><img src="../../project/project2_files/figure-html/unnamed-chunk-4-1.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#regression plot showing mean
+ggplot(nations, aes(birthrate_c, neonat_mortal_rate, color=income)) + geom_point()+geom_vline(xintercept=mean(nations$birth_rate,na.rm=T))+geom_smooth(method=&quot;lm&quot;)+xlim(10,30)</code></pre>
+<p><img src="../../project/project2_files/figure-html/unnamed-chunk-4-2.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>nations%&gt;%summarize(mean(birth_rate,na.rm=T))</code></pre>
+<pre><code>##   mean(birth_rate, na.rm = T)
+## 1                    24.67336</code></pre>
+<pre class="r"><code>resids&lt;-fit$residuals
+fitvals&lt;-fit$fitted.values
+ggplot()+geom_point(aes(fitvals,resids))+geom_hline(yintercept=0, color=&#39;red&#39;)</code></pre>
+<p><img src="../../project/project2_files/figure-html/unnamed-chunk-4-3.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot()+geom_qq(aes(sample=resids))+geom_qq_line(aes(sample=resids), color=&quot;red&quot;)</code></pre>
+<p><img src="../../project/project2_files/figure-html/unnamed-chunk-4-4.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>summary(fit)$coef</code></pre>
+<pre><code>## Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) 14.12088781 0.45513314 31.02583982
+1.776010e-190
+## incomeLow income 12.82975107 0.73476175 17.46110362
+5.751804e-66
+## incomeLower middle income 7.25435926 0.52198312
+13.89768927 5.767909e-43
+## incomeNot classified -3.10179844 166.83372668
+-0.01859215 9.851673e-01
+## incomeUpper middle income 3.07764266 0.55031763
+5.59248418 2.380624e-08
+## birthrate_c 0.82726972 0.03739483 22.12256940
+1.133722e-102
+## incomeLow income:birthrate_c -0.10938862 0.05103587
+-2.14336745 3.214087e-02
+## incomeLower middle income:birthrate_c 0.02866623
+0.04487404 0.63881547 5.229778e-01
+## incomeNot classified:birthrate_c 1.54812739 13.42265697
+0.11533688 9.081836e-01
+## incomeUpper middle income:birthrate_c -0.10977740
+0.05277721 -2.08001513 3.758463e-02</code></pre>
+<pre class="r"><code>coeftest(fit, vcov = vcovHC(fit))</code></pre>
+<pre><code>##
+## t test of coefficients:
+##
+## Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) 14.120888 0.696573 20.2719 &lt; 2.2e-16 ***
+## incomeLow income 12.829751 0.935775 13.7103 &lt; 2.2e-16
+***
+## incomeLower middle income 7.254359 0.755630 9.6004 &lt;
+2.2e-16 ***
+## incomeNot classified -3.101798 1.813803 -1.7101 0.08732
+.
+## incomeUpper middle income 3.077643 0.731295 4.2085
+2.625e-05 ***
+## birthrate_c 0.827270 0.057094 14.4896 &lt; 2.2e-16 ***
+## incomeLow income:birthrate_c -0.109389 0.068996 -1.5854
+0.11294
+## incomeLower middle income:birthrate_c 0.028666 0.062894
+0.4558 0.64857
+## incomeNot classified:birthrate_c 1.548127 0.146422
+10.5730 &lt; 2.2e-16 ***
+## incomeUpper middle income:birthrate_c -0.109777 0.061574
+-1.7829 0.07468 .
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1
+&#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="bootstrapped-standard-errors" class="section level2">
+<h2>Bootstrapped Standard Errors</h2>
+<p>In re-running the regression using bootstrapped residuals to obtain another set of estimated standard errors, the standard errors varied between the original standard errors and the robust standard errors. For all coefficients except 'incomeNot classified:birthrate_c' and 'incomeNot classified', the original SEs, robust SEs, and bootstrapped SEs are all pretty close, with the bootstrapped SEs being larger than the original SEs and the robust SEs being larger than the bootstrapped SEs for all coefficients. For the non-classfiied regions, however, the standard errors are highly variable and very large for the original SEs and bootstrapped SEs in comparision to the robust SEs. For all coefficients except 'incomeNot classified:birthrate_c' and 'incomeNot classified', the p-values are all pretty close, with the bootstrapped residuals regression p values being larger than the original regression p values and the robust SEs regression p values being larger than the bootstrapped residuals regression p values for all coefficients. For the non-classfiied regions, however, the p values are highly variable and very small for the original and bootstrapped residuals regressions in comparision to the robust SEs regression. I would use the robust SEs to run my regression because these are the most conservative estimates.</p>
+<pre class="r"><code>fit&lt;-lm(neonat_mortal_rate ~ income*birthrate_c, data=nations)
+resids&lt;-fit$residuals
+fitted&lt;-fit$fitted.values
+resid_resamp&lt;-replicate(5000,{
+new_resids&lt;-sample(resids,replace=TRUE)
+nations$new_y&lt;-fitted+new_resids
+fit&lt;-lm(new_y~income*birthrate_c, data=nations)
+coef(fit)
+})
+
+summary(fit)$coef</code></pre>
+<pre><code>## Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) 14.12088781 0.45513314 31.02583982
+1.776010e-190
+## incomeLow income 12.82975107 0.73476175 17.46110362
+5.751804e-66
+## incomeLower middle income 7.25435926 0.52198312
+13.89768927 5.767909e-43
+## incomeNot classified -3.10179844 166.83372668
+-0.01859215 9.851673e-01
+## incomeUpper middle income 3.07764266 0.55031763
+5.59248418 2.380624e-08
+## birthrate_c 0.82726972 0.03739483 22.12256940
+1.133722e-102
+## incomeLow income:birthrate_c -0.10938862 0.05103587
+-2.14336745 3.214087e-02
+## incomeLower middle income:birthrate_c 0.02866623
+0.04487404 0.63881547 5.229778e-01
+## incomeNot classified:birthrate_c 1.54812739 13.42265697
+0.11533688 9.081836e-01
+## incomeUpper middle income:birthrate_c -0.10977740
+0.05277721 -2.08001513 3.758463e-02</code></pre>
+<pre class="r"><code>resid_resamp%&gt;%t%&gt;%as.data.frame%&gt;%summarize_all(sd)</code></pre>
+<pre><code>## (Intercept) incomeLow income incomeLower middle income
+incomeNot classified
+## 1 0.4593934 0.7297995 0.5241625 167.1567
+## incomeUpper middle income birthrate_c incomeLow
+income:birthrate_c
+## 1 0.5551215 0.03755212 0.05134111
+## incomeLower middle income:birthrate_c incomeNot
+classified:birthrate_c
+## 1 0.04481521 13.44615
+## incomeUpper middle income:birthrate_c
+## 1 0.05332727</code></pre>
+</div>
+<div id="logistic-regression-model" class="section level2">
+<h2>Logistic Regression Model</h2>
+<p>The &quot;Global North&quot; is the region of the world, usually in reference to North America and Europe, characterized by an established democracy, wealth, advanced technology, political stability, an aging population, zero population growth and the dominance of world trade and politics. The &quot;Global South&quot; is the rest of the world and is characterized by agrarian economies that are relatively unstable, and political instability. These terminologies are quickly replacing &quot;Least Developed Countries (LDC)&quot; and &quot;More Developed Countries (MDC)&quot; in sociological studies. I wanted to create a model that could predict whether a country is classified as being a part of the global north or south based off of only that countries' gross domestic product per capita and CO2 emissions per capita.</p>
+<div id="coefficient-estimates-interpretation-1" class="section level3">
+<h3>Coefficient Estimates Interpretation</h3>
+<p>Controlling for CO2 Emissions Per Capita, GDP Per Capita has a significant effect on location classification, y (p=8.098e-11). For every current international dollar increase in GDP Per Capita, a countries' odds of being located in the global south change by a factor of e^(-2.4450e-05)=0.99. Controlling for GDP Per Capita, CO2 Per Capita has a significant effect on location classification, y (p=3.310e-08). For every 1,000 kilogram(1 metric ton) increase in CO2 Per Capita, a countries' odds of being located in the global south change by a factor of e^(-5.5332e-02)=0.946.</p>
+</div>
+<div id="classification-diagnostics" class="section level3">
+<h3>Classification Diagnostics</h3>
+<p>The accuracy, or proportion of correctly classified cases, of my model at predicting whether a country is in the global north or global south is 0.705. The sensitivity/true positive rate, or proportion of global south distinctions correctly classified, is 0.939. The specificity/true negative rate, or proportion of global north distinctions correctly classified, is 0.0857. Lastly, the precsion/positive predictive value, or proportion classified under global south which actually are, is 0.731. My AUC, or the probability that a randomly selected global south country (y=1) has a higher probability than a randomly selected global north country, is 0.813. My model is good at discriminating between the two, but not great.</p>
+<pre class="r"><code>nations2&lt;-nations%&gt;%mutate(Location=case_when(region==&quot;Sub-Saharan Africa&quot;|region==&quot;East Asia &amp; Pacific&quot;|region==&quot;South Asia&quot;|region==&quot;Latin America &amp; Caribbean&quot;|region==&quot;Middle East &amp; North Africa&quot;~&quot;Global South&quot;, region==&quot;North America&quot;|region==&quot;Europe &amp; Central Asia&quot;~&quot;Global North&quot;))
+
+nations2&lt;-nations2%&gt;%mutate(y=ifelse(Location==&quot;Global South&quot;,1,0))
+
+fit1&lt;-glm(y~gdp_percap+co2_percap, data=nations2, family=&quot;binomial&quot;(link=&quot;logit&quot;))
+coeftest(fit1)</code></pre>
+<pre><code>##
+## z test of coefficients:
+##
+## Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept) 1.5784e+00 5.0681e-02 31.1432 &lt; 2.2e-16 ***
+## gdp_percap -2.4450e-05 3.7623e-06 -6.4988 8.098e-11 ***
+## co2_percap -5.5332e-02 1.0016e-02 -5.5242 3.310e-08 ***
+## ---
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1
+&#39; &#39; 1</code></pre>
+<pre class="r"><code>exp(coef(fit1))</code></pre>
+<pre><code>## (Intercept)  gdp_percap  co2_percap 
+##   4.8470537   0.9999756   0.9461712</code></pre>
+<pre class="r"><code>nations2$prob&lt;-predict(fit1,type=&quot;response&quot;)
+table(predict=as.numeric(nations2$prob&gt;.5),truth=nations2$y)%&gt;%addmargins</code></pre>
+<pre><code>##        truth
+## predict    0    1  Sum
+##     0     99  185  284
+##     1   1056 2871 3927
+##     Sum 1155 3056 4211</code></pre>
+<pre class="r"><code>Accuracy&lt;-(99+2871)/4211
+Accuracy</code></pre>
+<pre><code>## [1] 0.7052957</code></pre>
+<pre class="r"><code>SensitivityTPR&lt;-2871/3056
+SensitivityTPR</code></pre>
+<pre><code>## [1] 0.9394634</code></pre>
+<pre class="r"><code>SpecificityTNR&lt;-99/1155
+SpecificityTNR</code></pre>
+<pre><code>## [1] 0.08571429</code></pre>
+<pre class="r"><code>PrecisionPPV&lt;-2871/3927
+PrecisionPPV</code></pre>
+<pre><code>## [1] 0.7310924</code></pre>
+<pre class="r"><code>nations2$logit&lt;-predict(fit1,type=&quot;link&quot;)
+nations2%&gt;%ggplot()+geom_density(aes(logit,color=Location,fill=Location), alpha=.4)+
+  theme(legend.position=c(.15,.85))+geom_vline(xintercept=0)+xlab(&quot;logit (log-odds)&quot;)+
+  geom_rug(aes(logit,color=Location))+xlim(-5,2.5)</code></pre>
+<p><img src="../../project/project2_files/figure-html/unnamed-chunk-6-1.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>library(plotROC)
+nations2$prob&lt;-predict(fit1,type=&quot;response&quot;)
+ROCplot&lt;-ggplot(nations2)+geom_roc(aes(d=y,m=prob), n.cuts=0)
+ROCplot</code></pre>
+<p><img src="../../project/project2_files/figure-html/unnamed-chunk-6-2.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>calc_auc(ROCplot)</code></pre>
+<pre><code>##   PANEL group      AUC
+## 1     1    -1 0.812615</code></pre>
+</div>
+</div>
+<div id="cross-validation-and-regularization" class="section level2">
+<h2>Cross Validation and Regularization</h2>
+<div id="in-sample-classification-diagnostics" class="section level3">
+<h3>In-sample Classification Diagnostics</h3>
+<p>In creating a new logistic regression model predicting my binary response variable from all of my other variables (ID variable, the two country code variables, and the variables 'country' and 'region' were excluded because these are not new predictors/they mean the same thing as 'Location' causing my model to incorrectly make perfect predictions if these were included), the accuracy of my model at predicting whether a country is in the global north or global south is 0.8857754. The sensitivity/true positive rate is 0.9159031. The specificity/true negative rate is 0.8060606. Lastly, the precsion/positive predictive value is 0.9259014. My AUC is 0.8609819. My model is good, but not great, at discriminating between the two in my sample.</p>
+</div>
+<div id="k-foldcv" class="section level3">
+<h3>K-foldCV</h3>
+<p>After performing a 10-fold cross validation with the same model, the accuracy of my model at predicting whether a country is in the global north or global south is 0.8850581. The sensitivity/true positive rate is 0.9155844. The specificity/true negative rate is 0.8079546. Lastly, the precsion/positive predictive value is 0.9254199. My AUC is 0.9365561. This model is great at discriminating between the two on new data. In comparison to the previous in-sample metrics, this is an improvement in my AUC. So, my previous model, although complex, did not overfit much if at all!</p>
+</div>
+<div id="lasso" class="section level3">
+<h3>LASSO</h3>
+<p>In performing LASSO on the same model/variables, the variables that are the most predictive of 'Location' are 'birth_rate', 'population', 'gdp_percap','income', and 'year'. Performing the 10-fold CV using only the variables lasso selected, this model's out-of-sample AUC to that of my logistic regressions above is greater than both at 0.9368754. The AUC increased only slightly from the 10-fold cross validation performed with the model of all (relatively) of my datasets variables.</p>
+<pre class="r"><code>class_diag&lt;-function(probs,truth){
+
+tab&lt;-table(factor(probs&gt;.5,levels=c(&quot;FALSE&quot;,&quot;TRUE&quot;)),truth)
+acc=sum(diag(tab))/sum(tab)
+sens=tab[2,2]/colSums(tab)[2]
+spec=tab[1,1]/colSums(tab)[1]
+ppv=tab[2,2]/rowSums(tab)[2]
+
+if(is.numeric(truth)==FALSE &amp; is.logical(truth)==FALSE) truth&lt;-as.numeric(truth)-1
+
+#CALCULATE EXACT AUC
+ord&lt;-order(probs, decreasing=TRUE)
+probs &lt;- probs[ord]; truth &lt;- truth[ord]
+
+TPR=cumsum(truth)/max(1,sum(truth)) 
+FPR=cumsum(!truth)/max(1,sum(!truth))
+
+dup&lt;-c(probs[-1]&gt;=probs[-length(probs)], FALSE)
+TPR&lt;-c(0,TPR[!dup],1); FPR&lt;-c(0,FPR[!dup],1)
+
+n &lt;- length(TPR)
+auc&lt;- sum( ((TPR[-1]+TPR[-n])/2) * (FPR[-1]-FPR[-n]) )
+
+data.frame(acc,sens,spec,ppv,auc)
+}
+fit2&lt;-glm(y~income+year+gdp_percap+life_expect+population+birth_rate+neonat_mortal_rate+co2_percap, data=nations2,family=&quot;binomial&quot;(link=&quot;logit&quot;))
+nations2$prob &lt;- predict(fit2,type=&quot;response&quot;)
+
+table(predict=as.numeric(nations2$prob&gt;.5),truth=nations2$y)%&gt;%addmargins</code></pre>
+<pre><code>##        truth
+## predict    0    1  Sum
+##     0    931  257 1188
+##     1    224 2799 3023
+##     Sum 1155 3056 4211</code></pre>
+<pre class="r"><code>Accuracy2&lt;-(2799+931)/4211
+Accuracy2</code></pre>
+<pre><code>## [1] 0.8857754</code></pre>
+<pre class="r"><code>SensitivityTPR2&lt;-2799/3056
+SensitivityTPR2</code></pre>
+<pre><code>## [1] 0.9159031</code></pre>
+<pre class="r"><code>SpecificityTNR2&lt;-931/1155
+SpecificityTNR2</code></pre>
+<pre><code>## [1] 0.8060606</code></pre>
+<pre class="r"><code>PrecisionPPV2&lt;-2799/3023
+PrecisionPPV2</code></pre>
+<pre><code>## [1] 0.9259014</code></pre>
+<pre class="r"><code>class_diag(nations2$prob&gt;.5,truth=nations2$y)</code></pre>
+<pre><code>##         acc      sens      spec       ppv       auc
+## 1 0.8857754 0.9159031 0.8060606 0.9259014 0.8609819</code></pre>
+<pre class="r"><code>k=10
+data1&lt;-nations2[sample(nrow(nations2)),]
+folds1&lt;-cut(seq(1:nrow(nations2)),breaks=k,labels=F)
+diags&lt;-NULL
+for(i in 1:k){
+train1&lt;-data1[folds1!=i,]
+test1&lt;-data1[folds1==i,]
+truth1&lt;-test1$y
+fit3&lt;-glm(y~income+year+gdp_percap+life_expect+population+birth_rate+neonat_mortal_rate+co2_percap,data=train1,family=&quot;binomial&quot;)
+probs1&lt;-predict(fit3,newdata = test1,type=&quot;response&quot;)
+diags&lt;-rbind(diags,class_diag(probs1,truth1))
+}
+summarize_all(diags,mean)</code></pre>
+<pre><code>##         acc      sens    spec       ppv       auc
+## 1 0.8853036 0.9150707 0.80467 0.9259035 0.9363251</code></pre>
+<pre class="r"><code>library(glmnet)
+y&lt;-as.matrix(nations2$y)
+x&lt;-model.matrix(y~income+year+gdp_percap+life_expect+population+birth_rate+neonat_mortal_rate+co2_percap,data=nations2)[,-1]
+head(x)</code></pre>
+<pre><code>## incomeLow income incomeLower middle income incomeNot
+classified incomeUpper middle income year
+## 1 0 0 0 0 2004
+## 2 0 0 0 0 1994
+## 3 0 0 0 0 2007
+## 4 0 0 0 0 1992
+## 5 0 0 0 0 2008
+## 6 0 0 0 0 1993
+## gdp_percap life_expect population birth_rate
+neonat_mortal_rate co2_percap
+## 1 31384.58 80.49024 20127400 12.3 3.3 17.02652
+## 2 20132.72 77.87805 17855000 14.5 3.9 15.57659
+## 3 36589.73 81.29268 20827600 14.1 3.1 17.86526
+## 4 18233.34 77.37805 17495000 15.1 4.2 15.31777
+## 5 37506.91 81.39512 21249200 14.0 3.0 18.16088
+## 6 19172.89 77.87805 17667000 14.7 4.0 15.70145</code></pre>
+<pre class="r"><code>x&lt;-scale(x)
+
+cv &lt;- cv.glmnet(x,y, family=&quot;binomial&quot;)
+lasso&lt;-glmnet(x,y,family=&quot;binomial&quot;,lambda=cv$lambda.1se)
+coef(lasso)</code></pre>
+<pre><code>## 12 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                                   s0
+## (Intercept)                2.2628348
+## incomeLow income          -0.3930480
+## incomeLower middle income  .        
+## incomeNot classified       .        
+## incomeUpper middle income  0.2443620
+## year                       0.2142925
+## gdp_percap                 0.1555720
+## life_expect                .        
+## population                 0.1996811
+## birth_rate                 3.1831876
+## neonat_mortal_rate         .        
+## co2_percap                 .</code></pre>
+<pre class="r"><code>k=10
+data &lt;- nations2 %&gt;% sample_frac
+folds &lt;- ntile(1:nrow(data),n=10)
+diags&lt;-NULL
+for(i in 1:k){
+  train &lt;- data[folds!=i,] 
+  test &lt;- data[folds==i,] 
+  truth &lt;- test$y 
+  
+  fit4 &lt;- glm(y~birth_rate+population+gdp_percap+year+income, 
+              data=train, family=&quot;binomial&quot;)
+  probs &lt;- predict(fit4, newdata=test, type=&quot;response&quot;)
+  
+  diags&lt;-rbind(diags,class_diag(probs,truth))
+}
+
+diags%&gt;%summarize_all(mean)</code></pre>
+<pre><code>##         acc     sens      spec       ppv       auc
+## 1 0.8874368 0.915762 0.8102114 0.9280802 0.9362668</code></pre>
+</div>
+<div id="references" class="section level3">
+<h3>References</h3>
+<p><a href="https://www.researchgate.net/publication/317211403_Socio-economic_Impacts_of_Intra-_and_Extra-_Regional_Southern_African_Development_Community_Migration_on_South_Africa" class="uri">https://www.researchgate.net/publication/317211403_Socio-economic_Impacts_of_Intra-_and_Extra-_Regional_Southern_African_Development_Community_Migration_on_South_Africa</a></p>
+<p><a href="https://www.researchgate.net/publication/265425871_A_comparative_analysis_of_global_north_and_global_south_economies#" class="uri">https://www.researchgate.net/publication/265425871_A_comparative_analysis_of_global_north_and_global_south_economies#</a>:~:text=The%20global%20South%20represents%20mainly,tyranny%20(Odeh%2C%202010)%20.</p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+</div>
+</div>
+</div>
+
+            
+        <hr>         <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+              </div> 
+            </div>
+          </div>
+
+   <hr>  <div class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+
+    (function() {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var disqus_shortname = '';
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div> 
+        </div>
+      </div>
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../../js/docs.min.js"></script>
+<script src="../../js/main.js"></script>
+
+<script src="../../js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,156 @@
+---
+title: Dental Public Health and Python
+author: 'Kyanna Spain'
+date: '2020-12-11'
+slug: dental-public-health-python
+categories: []
+tags: []
+description: '' 
+---
+![](/post/2020-12-11-dental-public-health_files/dentalgeek.png)
+
+As a biology nerd also interested in sociology, I joined the UT Austin Bridging Disciplines Social Inequality, Health, and Policy certificate program. 
+
+This allowed me to take my natural science courses but also learn about social science and the economic, societal, and educational disparities that exist in United States populations and across the world. 
+
+In my computational biology course, I learned not only how to code using the R language, but I was able to use my learned skills to analyze, model, test, and predict various population statistics and the role carbon dioxide emissions plays in them.
+
+[Link to Project 1: Analyzing the Effect of Carbon Dioxide Emissions On Population Statistics Across World Regions](/project/project1/)
+
+[Link to Project 2: Modeling, Testing, and Predicting the Effect of Carbon Dioxide Emissions On Population Statistics Across World Regions](/project/project2/)
+
+## Career Trajectory 
+### What is Dental Public Health?
+
+Dental public health is, in short, population-based dentistry. It is the branch that prioritizes oral health promotion, disease prevention, and health policy advocacy. 
+I had the opporunity to work with Jack Sansing Dental Clinic, a safe space for patients affected by HIV and AIDS to recieve dental treatment, education, and resources, solidifying my passion for this field. 
+
+Now, I hope to use some of the skills (shown below) I learned in Python to continue the kind of research linked above in my future career as a dentist in public health! 
+
+### Python
+#### The Basics, NumPy
+```{python}
+import pandas as pd
+quakes=pd.read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/datasets/quakes.csv",index_col=0)
+print(quakes.shape)
+
+import numpy as np
+print(np.mean(quakes.mag))
+print(quakes.mag.max())
+print(quakes.mag.min())
+print(quakes.mag.median())
+```
+.shape tells me how many observations/rows and columns this dataset contains, respectively.
+
+numpy allows me to perform arithmetic functions like mean, max, min, and median on arrays.
+
+#### The Power of Functions
+```{python}
+string="I cannot wait for this pandemic to be over!"
+
+def count_words(sentence): 
+    counts = {}            
+    for c in sentence:     
+        if c in counts:    
+            counts[c]+=1   
+        else:
+            counts[c]=1    
+            
+    for c in counts:
+        print(c, "appears", counts[c],"times")
+count_words(string)
+```
+here, I can use this function to input any string object and count the number of times each character/letter appears in the string! Pretty random, but cool! 
+
+#### Data manipulation (pandas)
+```{python}
+import pandas as pd
+quakes=pd.read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/datasets/quakes.csv",index_col=0)
+
+print(quakes.groupby(['lat','long'])
+.agg(['mean'])
+.head(6))
+```
+Data manipulation using pandas allowed me to narrow my analysis of the quakes dataset down to focus just on the latitude and longitude groupings!
+
+#### Regular Expressions
+```{python}
+string2 = "14 year old Will Burrows has little in common with his strange, dysfunctional family. In fact, the only bond he shares with his eccentric father is a passion for archaeological excavation. So when his dad mysteriously vanishes, Will is compelled to dig up the truth behind his disappearance. He unearths a subterranean society that time forgot. The Colony has existed unchanged for a century, but it is no benign time capsule of a bygone era because the Colony is ruled by a merciless overclass, the Styx. Will must free his father. Is he also about to ignite a revolution?"
+print(string2)
+
+import re
+
+resultinglist = re.split("\s+", string2)
+print(resultinglist)
+
+lowercase=[]
+for word in resultinglist:
+ temp=re.search(r".+",word)
+ lowercase.append(temp.group(0).lower())
+print(lowercase)
+```
+This is a short novel synopsis of my favorite middle school fiction series called Tunnels by Roderick Gordon. Regular expressions and loops in Python allowed me to split this string by each white space, and then make each word lowercase!
+
+#### Stats and Machine Learning
+```{python}
+import seaborn as sns
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+iris= sns.load_dataset('iris')
+fit = ols("sepal_length~C(species)",data=iris).fit()
+anova_table = sm.stats.anova_lm(fit,typ=2)
+print(anova_table)
+
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
+tukey = pairwise_tukeyhsd(iris.sepal_length,iris.species,alpha=.05,)
+print(tukey)
+```
+Just like in R, I can run ANOVA and Post Hoc tests in Python! Using the iris dataset, I found that all groups (species) are significantly different from one another in sepal length. 
+
+
+### Reticulate 
+Using reticulate allows R and Python to "talk" to each other and share information across code chunks! 
+
+#### This is an R code chunk
+
+If I want to grab an object I defined in a python code chunk and use it in this R code chunk, I have to use this formatting: py$nameofobject
+```{R}
+library(reticulate)
+
+first<-"Kyanna"
+birthmonth<-"August"
+```
+#### This is a Python code chunk
+
+If I want an object I defined in an R code chunk to use in this python code chunk, I have to use this formatting: r.nameofobject
+```{python}
+last = "Spain"
+birthyear="1999"
+print(r.first, last, r.birthmonth, birthyear)
+```
+#### R code chunk again! See how it is exactly like the above python code chunk!
+```{R}
+cat(c(first, py$last, birthmonth, py$birthyear))
+```
+#### Now for visualizations!
+#### Python code chunk
+```{python}
+import seaborn as sns
+diamonds=sns.load_dataset('diamonds')
+print(diamonds.head())
+```
+#### R code chunk
+R includes the ggplot2 package that we can use to make very pretty plots with the python dataset!
+```{R}
+diamonds2<-py$diamonds
+
+library(tidyverse)
+ggplot(diamonds2, aes(carat, price, color=cut))+geom_point()
+```
+Here, we can see the diamond price by carat trends by cut categories!
+
+I hope this was enjoyable and that you learned a little about dental public health and Python!
+
+
+
+###### top image source: https://www.thedentalgeek.com/2015/02/the-dark-side-of-the-apple-what-drinking-vinegar-means-for-your-mouth/

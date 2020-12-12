@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Kyanna Spain" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../../img/favicon.ico">
+    <title>Dental Public Health and Python</title>
+    <meta name="generator" content="Hugo 0.79.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../../../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../../../../../"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="../../../../../post/">BLOG</a></li>
+        
+        <li><a href="../../../../../projects/">PROJECTS</a></li>
+        
+        <li><a href="../../../../../resume/">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="../../../../../post/2020/12/11/dental-public-health-python/">Dental Public Health and Python</a></strong>
+          </h3>
+        </div>
+ 
+<div class="blog-title">
+          <h4>
+         December 11, 2020 
+            &nbsp;&nbsp;
+            
+          </h4>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              
+
+
+<div class="figure">
+<img src="../../../../../post/2020-12-11-dental-public-health_files/dentalgeek.png" />
+
+</div>
+<p>As a biology nerd also interested in sociology, I joined the UT Austin Bridging Disciplines Social Inequality, Health, and Policy certificate program.</p>
+<p>This allowed me to take my natural science courses but also learn about social science and the economic, societal, and educational disparities that exist in United States populations and across the world.</p>
+<p>In my computational biology course, I learned not only how to code using the R language, but I was able to use my learned skills to analyze, model, test, and predict various population statistics and the role carbon dioxide emissions plays in them.</p>
+<p><a href="../../../../../project/project1/">Link to Project 1: Analyzing the Effect of Carbon Dioxide Emissions On Population Statistics Across World Regions</a></p>
+<p><a href="../../../../../project/project2/">Link to Project 2: Modeling, Testing, and Predicting the Effect of Carbon Dioxide Emissions On Population Statistics Across World Regions</a></p>
+<div id="career-trajectory" class="section level2">
+<h2>Career Trajectory</h2>
+<div id="what-is-dental-public-health" class="section level3">
+<h3>What is Dental Public Health?</h3>
+<p>Dental public health is, in short, population-based dentistry. It is the branch that prioritizes oral health promotion, disease prevention, and health policy advocacy. I had the opporunity to work with Jack Sansing Dental Clinic, a safe space for patients affected by HIV and AIDS to recieve dental treatment, education, and resources, solidifying my passion for this field.</p>
+<p>Now, I hope to use some of the skills (shown below) I learned in Python to continue the kind of research linked above in my future career as a dentist in public health!</p>
+</div>
+<div id="python" class="section level3">
+<h3>Python</h3>
+<div id="the-basics-numpy" class="section level4">
+<h4>The Basics, NumPy</h4>
+<pre class="python"><code>import pandas as pd
+quakes=pd.read_csv(&quot;https://vincentarelbundock.github.io/Rdatasets/csv/datasets/quakes.csv&quot;,index_col=0)
+print(quakes.shape)</code></pre>
+<pre><code>## (1000, 5)</code></pre>
+<pre class="python"><code>import numpy as np
+print(np.mean(quakes.mag))</code></pre>
+<pre><code>## 4.6204</code></pre>
+<pre class="python"><code>print(quakes.mag.max())</code></pre>
+<pre><code>## 6.4</code></pre>
+<pre class="python"><code>print(quakes.mag.min())</code></pre>
+<pre><code>## 4.0</code></pre>
+<pre class="python"><code>print(quakes.mag.median())</code></pre>
+<pre><code>## 4.6</code></pre>
+<p>.shape tells me how many observations/rows and columns this dataset contains, respectively.</p>
+<p>numpy allows me to perform arithmetic functions like mean, max, min, and median on arrays.</p>
+</div>
+<div id="the-power-of-functions" class="section level4">
+<h4>The Power of Functions</h4>
+<pre class="python"><code>string=&quot;I cannot wait for this pandemic to be over!&quot;
+
+def count_words(sentence): 
+    counts = {}            
+    for c in sentence:     
+        if c in counts:    
+            counts[c]+=1   
+        else:
+            counts[c]=1    
+            
+    for c in counts:
+        print(c, &quot;appears&quot;, counts[c],&quot;times&quot;)
+count_words(string)</code></pre>
+<pre><code>## I appears 1 times
+##   appears 8 times
+## c appears 2 times
+## a appears 3 times
+## n appears 3 times
+## o appears 4 times
+## t appears 4 times
+## w appears 1 times
+## i appears 3 times
+## f appears 1 times
+## r appears 2 times
+## h appears 1 times
+## s appears 1 times
+## p appears 1 times
+## d appears 1 times
+## e appears 3 times
+## m appears 1 times
+## b appears 1 times
+## v appears 1 times
+## ! appears 1 times</code></pre>
+<p>here, I can use this function to input any string object and count the number of times each character/letter appears in the string! Pretty random, but cool!</p>
+</div>
+<div id="data-manipulation-pandas" class="section level4">
+<h4>Data manipulation (pandas)</h4>
+<pre class="python"><code>import pandas as pd
+quakes=pd.read_csv(&quot;https://vincentarelbundock.github.io/Rdatasets/csv/datasets/quakes.csv&quot;,index_col=0)
+
+print(quakes.groupby([&#39;lat&#39;,&#39;long&#39;])
+.agg([&#39;mean&#39;])
+.head(6))</code></pre>
+<pre><code>##               depth  mag stations
+##                mean mean     mean
+## lat    long                      
+## -38.59 175.70   162  4.7     36.0
+## -38.46 176.03   148  4.6     44.0
+## -38.28 177.10   100  5.4     71.0
+## -37.93 177.47    65  5.4     65.0
+## -37.37 176.78   263  4.7     34.0
+## -37.03 177.52   153  5.6     87.0</code></pre>
+<p>Data manipulation using pandas allowed me to narrow my analysis of the quakes dataset down to focus just on the latitude and longitude groupings!</p>
+</div>
+<div id="regular-expressions" class="section level4">
+<h4>Regular Expressions</h4>
+<pre class="python"><code>string2 = &quot;14 year old Will Burrows has little in common with his strange, dysfunctional family. In fact, the only bond he shares with his eccentric father is a passion for archaeological excavation. So when his dad mysteriously vanishes, Will is compelled to dig up the truth behind his disappearance. He unearths a subterranean society that time forgot. The Colony has existed unchanged for a century, but it is no benign time capsule of a bygone era because the Colony is ruled by a merciless overclass, the Styx. Will must free his father. Is he also about to ignite a revolution?&quot;
+print(string2)</code></pre>
+<pre><code>## 14 year old Will Burrows has little in common with his strange, dysfunctional family. In fact, the only bond he shares with his eccentric father is a passion for archaeological excavation. So when his dad mysteriously vanishes, Will is compelled to dig up the truth behind his disappearance. He unearths a subterranean society that time forgot. The Colony has existed unchanged for a century, but it is no benign time capsule of a bygone era because the Colony is ruled by a merciless overclass, the Styx. Will must free his father. Is he also about to ignite a revolution?</code></pre>
+<pre class="python"><code>import re
+
+resultinglist = re.split(&quot;\s+&quot;, string2)
+print(resultinglist)</code></pre>
+<pre><code>## [&#39;14&#39;, &#39;year&#39;, &#39;old&#39;, &#39;Will&#39;, &#39;Burrows&#39;, &#39;has&#39;, &#39;little&#39;, &#39;in&#39;, &#39;common&#39;, &#39;with&#39;, &#39;his&#39;, &#39;strange,&#39;, &#39;dysfunctional&#39;, &#39;family.&#39;, &#39;In&#39;, &#39;fact,&#39;, &#39;the&#39;, &#39;only&#39;, &#39;bond&#39;, &#39;he&#39;, &#39;shares&#39;, &#39;with&#39;, &#39;his&#39;, &#39;eccentric&#39;, &#39;father&#39;, &#39;is&#39;, &#39;a&#39;, &#39;passion&#39;, &#39;for&#39;, &#39;archaeological&#39;, &#39;excavation.&#39;, &#39;So&#39;, &#39;when&#39;, &#39;his&#39;, &#39;dad&#39;, &#39;mysteriously&#39;, &#39;vanishes,&#39;, &#39;Will&#39;, &#39;is&#39;, &#39;compelled&#39;, &#39;to&#39;, &#39;dig&#39;, &#39;up&#39;, &#39;the&#39;, &#39;truth&#39;, &#39;behind&#39;, &#39;his&#39;, &#39;disappearance.&#39;, &#39;He&#39;, &#39;unearths&#39;, &#39;a&#39;, &#39;subterranean&#39;, &#39;society&#39;, &#39;that&#39;, &#39;time&#39;, &#39;forgot.&#39;, &#39;The&#39;, &#39;Colony&#39;, &#39;has&#39;, &#39;existed&#39;, &#39;unchanged&#39;, &#39;for&#39;, &#39;a&#39;, &#39;century,&#39;, &#39;but&#39;, &#39;it&#39;, &#39;is&#39;, &#39;no&#39;, &#39;benign&#39;, &#39;time&#39;, &#39;capsule&#39;, &#39;of&#39;, &#39;a&#39;, &#39;bygone&#39;, &#39;era&#39;, &#39;because&#39;, &#39;the&#39;, &#39;Colony&#39;, &#39;is&#39;, &#39;ruled&#39;, &#39;by&#39;, &#39;a&#39;, &#39;merciless&#39;, &#39;overclass,&#39;, &#39;the&#39;, &#39;Styx.&#39;, &#39;Will&#39;, &#39;must&#39;, &#39;free&#39;, &#39;his&#39;, &#39;father.&#39;, &#39;Is&#39;, &#39;he&#39;, &#39;also&#39;, &#39;about&#39;, &#39;to&#39;, &#39;ignite&#39;, &#39;a&#39;, &#39;revolution?&#39;]</code></pre>
+<pre class="python"><code>lowercase=[]
+for word in resultinglist:
+ temp=re.search(r&quot;.+&quot;,word)
+ lowercase.append(temp.group(0).lower())
+print(lowercase)</code></pre>
+<pre><code>## [&#39;14&#39;, &#39;year&#39;, &#39;old&#39;, &#39;will&#39;, &#39;burrows&#39;, &#39;has&#39;, &#39;little&#39;, &#39;in&#39;, &#39;common&#39;, &#39;with&#39;, &#39;his&#39;, &#39;strange,&#39;, &#39;dysfunctional&#39;, &#39;family.&#39;, &#39;in&#39;, &#39;fact,&#39;, &#39;the&#39;, &#39;only&#39;, &#39;bond&#39;, &#39;he&#39;, &#39;shares&#39;, &#39;with&#39;, &#39;his&#39;, &#39;eccentric&#39;, &#39;father&#39;, &#39;is&#39;, &#39;a&#39;, &#39;passion&#39;, &#39;for&#39;, &#39;archaeological&#39;, &#39;excavation.&#39;, &#39;so&#39;, &#39;when&#39;, &#39;his&#39;, &#39;dad&#39;, &#39;mysteriously&#39;, &#39;vanishes,&#39;, &#39;will&#39;, &#39;is&#39;, &#39;compelled&#39;, &#39;to&#39;, &#39;dig&#39;, &#39;up&#39;, &#39;the&#39;, &#39;truth&#39;, &#39;behind&#39;, &#39;his&#39;, &#39;disappearance.&#39;, &#39;he&#39;, &#39;unearths&#39;, &#39;a&#39;, &#39;subterranean&#39;, &#39;society&#39;, &#39;that&#39;, &#39;time&#39;, &#39;forgot.&#39;, &#39;the&#39;, &#39;colony&#39;, &#39;has&#39;, &#39;existed&#39;, &#39;unchanged&#39;, &#39;for&#39;, &#39;a&#39;, &#39;century,&#39;, &#39;but&#39;, &#39;it&#39;, &#39;is&#39;, &#39;no&#39;, &#39;benign&#39;, &#39;time&#39;, &#39;capsule&#39;, &#39;of&#39;, &#39;a&#39;, &#39;bygone&#39;, &#39;era&#39;, &#39;because&#39;, &#39;the&#39;, &#39;colony&#39;, &#39;is&#39;, &#39;ruled&#39;, &#39;by&#39;, &#39;a&#39;, &#39;merciless&#39;, &#39;overclass,&#39;, &#39;the&#39;, &#39;styx.&#39;, &#39;will&#39;, &#39;must&#39;, &#39;free&#39;, &#39;his&#39;, &#39;father.&#39;, &#39;is&#39;, &#39;he&#39;, &#39;also&#39;, &#39;about&#39;, &#39;to&#39;, &#39;ignite&#39;, &#39;a&#39;, &#39;revolution?&#39;]</code></pre>
+<p>This is a short novel synopsis of my favorite middle school fiction series called Tunnels by Roderick Gordon. Regular expressions and loops in Python allowed me to split this string by each white space, and then make each word lowercase!</p>
+</div>
+<div id="stats-and-machine-learning" class="section level4">
+<h4>Stats and Machine Learning</h4>
+<pre class="python"><code>import seaborn as sns
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+iris= sns.load_dataset(&#39;iris&#39;)
+fit = ols(&quot;sepal_length~C(species)&quot;,data=iris).fit()
+anova_table = sm.stats.anova_lm(fit,typ=2)
+print(anova_table)</code></pre>
+<pre><code>##                sum_sq     df           F        PR(&gt;F)
+## C(species)  63.212133    2.0  119.264502  1.669669e-31
+## Residual    38.956200  147.0         NaN           NaN</code></pre>
+<pre class="python"><code>from statsmodels.stats.multicomp import pairwise_tukeyhsd
+tukey = pairwise_tukeyhsd(iris.sepal_length,iris.species,alpha=.05,)
+print(tukey)</code></pre>
+<pre><code>##    Multiple Comparison of Means - Tukey HSD, FWER=0.05   
+## =========================================================
+##   group1     group2   meandiff p-adj lower  upper  reject
+## ---------------------------------------------------------
+##     setosa versicolor     0.93 0.001 0.6862 1.1738   True
+##     setosa  virginica    1.582 0.001 1.3382 1.8258   True
+## versicolor  virginica    0.652 0.001 0.4082 0.8958   True
+## ---------------------------------------------------------</code></pre>
+<p>Just like in R, I can run ANOVA and Post Hoc tests in Python! Using the iris dataset, I found that all groups (species) are significantly different from one another in sepal length.</p>
+</div>
+</div>
+<div id="reticulate" class="section level3">
+<h3>Reticulate</h3>
+<p>Using reticulate allows R and Python to &quot;talk&quot; to each other and share information across code chunks!</p>
+<div id="this-is-an-r-code-chunk" class="section level4">
+<h4>This is an R code chunk</h4>
+<p>If I want to grab an object I defined in a python code chunk and use it in this R code chunk, I have to use this formatting: py$nameofobject</p>
+<pre class="r"><code>library(reticulate)
+
+first&lt;-&quot;Kyanna&quot;
+birthmonth&lt;-&quot;August&quot;</code></pre>
+</div>
+<div id="this-is-a-python-code-chunk" class="section level4">
+<h4>This is a Python code chunk</h4>
+<p>If I want an object I defined in an R code chunk to use in this python code chunk, I have to use this formatting: r.nameofobject</p>
+<pre class="python"><code>last = &quot;Spain&quot;
+birthyear=&quot;1999&quot;
+print(r.first, last, r.birthmonth, birthyear)</code></pre>
+<pre><code>## Kyanna Spain August 1999</code></pre>
+</div>
+<div id="r-code-chunk-again-see-how-it-is-exactly-like-the-above-python-code-chunk" class="section level4">
+<h4>R code chunk again! See how it is exactly like the above python code chunk!</h4>
+<pre class="r"><code>cat(c(first, py$last, birthmonth, py$birthyear))</code></pre>
+<pre><code>## Kyanna Spain August 1999</code></pre>
+</div>
+<div id="now-for-visualizations" class="section level4">
+<h4>Now for visualizations!</h4>
+</div>
+<div id="python-code-chunk" class="section level4">
+<h4>Python code chunk</h4>
+<pre class="python"><code>import seaborn as sns
+diamonds=sns.load_dataset(&#39;diamonds&#39;)
+print(diamonds.head())</code></pre>
+<pre><code>##    carat      cut color clarity  depth  table  price     x     y     z
+## 0   0.23    Ideal     E     SI2   61.5   55.0    326  3.95  3.98  2.43
+## 1   0.21  Premium     E     SI1   59.8   61.0    326  3.89  3.84  2.31
+## 2   0.23     Good     E     VS1   56.9   65.0    327  4.05  4.07  2.31
+## 3   0.29  Premium     I     VS2   62.4   58.0    334  4.20  4.23  2.63
+## 4   0.31     Good     J     SI2   63.3   58.0    335  4.34  4.35  2.75</code></pre>
+</div>
+<div id="r-code-chunk" class="section level4">
+<h4>R code chunk</h4>
+<p>R includes the ggplot2 package that we can use to make very pretty plots with the python dataset!</p>
+<pre class="r"><code>diamonds2&lt;-py$diamonds
+
+library(tidyverse)</code></pre>
+<pre><code>## Warning: replacing previous import &#39;vctrs::data_frame&#39; by &#39;tibble::data_frame&#39;
+## when loading &#39;dplyr&#39;</code></pre>
+<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ tibble  3.0.3     ✓ dplyr   1.0.1
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>ggplot(diamonds2, aes(carat, price, color=cut))+geom_point()</code></pre>
+<p><img src="../../../../../post/2020-12-11-dental-public-health_files/figure-html/unnamed-chunk-10-1.png" width="672" /> Here, we can see the diamond price by carat trends by cut categories!</p>
+<p>I hope this was enjoyable and that you learned a little about dental public health and Python!</p>
+<div id="top-image-source-httpswww.thedentalgeek.com201502the-dark-side-of-the-apple-what-drinking-vinegar-means-for-your-mouth" class="section level6">
+<h6>top image source: <a href="https://www.thedentalgeek.com/2015/02/the-dark-side-of-the-apple-what-drinking-vinegar-means-for-your-mouth/" class="uri">https://www.thedentalgeek.com/2015/02/the-dark-side-of-the-apple-what-drinking-vinegar-means-for-your-mouth/</a></h6>
+</div>
+</div>
+</div>
+</div>
+
+            
+        <hr>         <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+              </div> 
+            </div>
+          </div>
+
+   <hr>  <div class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+
+    (function() {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var disqus_shortname = '';
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div> 
+        </div>
+      </div>
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../../../../../js/docs.min.js"></script>
+<script src="../../../../../js/main.js"></script>
+
+<script src="../../../../../js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+  </body>
+</html>

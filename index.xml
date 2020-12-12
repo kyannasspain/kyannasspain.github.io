@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My Website</title>
+    <link>/</link>
+    <description>Recent content on My Website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 11 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dental Public Health and Python</title>
+      <link>/post/2020/12/11/dental-public-health-python/</link>
+      <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020/12/11/dental-public-health-python/</guid>
+      <description>As a biology nerd also interested in sociology, I joined the UT Austin Bridging Disciplines Social Inequality, Health, and Policy certificate program.
+This allowed me to take my natural science courses but also learn about social science and the economic, societal, and educational disparities that exist in United States populations and across the world.
+In my computational biology course, I learned not only how to code using the R language, but I was able to use my learned skills to analyze, model, test, and predict various population statistics and the role carbon dioxide emissions plays in them.</description>
+    </item>
+    
+    <item>
+      <title>Exploratory Data Analysis Project</title>
+      <link>/project/project1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/project/project1/</guid>
+      <description>Analyzing the Effect of Carbon Dioxide Emissions On Population Statistics Across World Regions Introduction For this exploratory data analysis project, I chose two datasets from the World Bank Indicators portal. I am interested in analyzing the disparities in important population estimates across world regions such as population size, life expectancy, and gross domestic product per capita. I also want to analyze the effect of CO2 emissions on human populations.</description>
+    </item>
+    
+    <item>
+      <title>Project 2: Modeling, Testing, and Predicting</title>
+      <link>/project/project2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/project/project2/</guid>
+      <description>Modeling, Testing, and Predicting the Effect of Carbon Dioxide Emissions On Population Statistics Across World Regions Introduction For modeling, testing, and predicting project, I chose the dataset I previously created from two datasets from the World Bank Indicators portal. The &#39;nations&#39; dataset contains population statistics across several years for various countries using their three letter country codes. The variables include: &#39;iso2c&#39;, the two letter code for each country; &#39;iso3c&#39;, the three letter code for each country; &#39;country&#39;, the country name; &#39;year&#39;; &#39;gdp_percap&#39;, the gross domestic product per capita in current international dollars corrected for purchasing power in different territories; &#39;life_expect&#39;, the life expectancy at birth in years; &#39;population&#39;, the estimated total population at mid-year including all residents except refugees; &#39;birth_rate&#39;, the number of live births per 1,000 people based on the &#39;population&#39; estimate; &#39;neonat_mortal_rate&#39;, the number of babies dying before 28 days old per 1,000 live births that year; &#39;region&#39;, world boundaries set for administrative purposes by the World Bank; and &#39;income&#39;, four income groupings: low, lower-middle, upper-middle, and high.</description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/</guid>
+      <description> Check out some of my coding projects below:
+ Wrangling &amp;amp; Exploratory Data Analysis
+ Modeling, Inference, Prediction
+  -- </description>
+    </item>
+    
+    <item>
+      <title>Resume</title>
+      <link>/resume/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/resume/</guid>
+      <description>    </description>
+    </item>
+    
+  </channel>
+</rss>
