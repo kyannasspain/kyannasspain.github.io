@@ -60,7 +60,7 @@
  
 <div class="blog-title">
           <h4>
-         January 1, 0001 
+         November 22, 2020 
             &nbsp;&nbsp;
             
           </h4>
@@ -533,15 +533,15 @@ summary(fit)$coef</code></pre>
 <pre class="r"><code>resid_resamp%&gt;%t%&gt;%as.data.frame%&gt;%summarize_all(sd)</code></pre>
 <pre><code>## (Intercept) incomeLow income incomeLower middle income
 incomeNot classified
-## 1 0.4593934 0.7297995 0.5241625 167.1567
+## 1 0.4644666 0.7318238 0.528723 164.4269
 ## incomeUpper middle income birthrate_c incomeLow
 income:birthrate_c
-## 1 0.5551215 0.03755212 0.05134111
+## 1 0.5548753 0.03840771 0.05196607
 ## incomeLower middle income:birthrate_c incomeNot
 classified:birthrate_c
-## 1 0.04481521 13.44615
+## 1 0.04624739 13.23589
 ## incomeUpper middle income:birthrate_c
-## 1 0.05332727</code></pre>
+## 1 0.05388851</code></pre>
 </div>
 <div id="logistic-regression-model" class="section level2">
 <h2>Logistic Regression Model</h2>
@@ -681,8 +681,8 @@ probs1&lt;-predict(fit3,newdata = test1,type=&quot;response&quot;)
 diags&lt;-rbind(diags,class_diag(probs1,truth1))
 }
 summarize_all(diags,mean)</code></pre>
-<pre><code>##         acc      sens    spec       ppv       auc
-## 1 0.8853036 0.9150707 0.80467 0.9259035 0.9363251</code></pre>
+<pre><code>##         acc      sens      spec       ppv       auc
+## 1 0.8862548 0.9159983 0.8085005 0.9265015 0.9357095</code></pre>
 <pre class="r"><code>library(glmnet)
 y&lt;-as.matrix(nations2$y)
 x&lt;-model.matrix(y~income+year+gdp_percap+life_expect+population+birth_rate+neonat_mortal_rate+co2_percap,data=nations2)[,-1]
@@ -739,8 +739,8 @@ for(i in 1:k){
 }
 
 diags%&gt;%summarize_all(mean)</code></pre>
-<pre><code>##         acc     sens      spec       ppv       auc
-## 1 0.8874368 0.915762 0.8102114 0.9280802 0.9362668</code></pre>
+<pre><code>##         acc      sens      spec       ppv       auc
+## 1 0.8874379 0.9160811 0.8119806 0.9276211 0.9368198</code></pre>
 </div>
 <div id="references" class="section level3">
 <h3>References</h3>
